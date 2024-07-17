@@ -4,9 +4,9 @@ dpkg -i google-chrome-stable_current_amd64.deb
 apt-get install -f -y
 wget https://storage.googleapis.com/chrome-for-testing-public/126.0.6478.182/linux64/chromedriver-linux64.zip
 unzip chromedriver-linux64.zip
-mv chromedriver /usr/bin/chromedriver
-chown root:root /usr/bin/chromedriver
-chmod +x /usr/bin/chromedriver
+sudo mv chromedriver /usr/bin/chromedriver
+sudo chown root:root /usr/bin/chromedriver
+sudo chmod +x /usr/bin/chromedriver
 apt install python3 -y
 apt install pip3 -y
 pip3 install selenium
