@@ -7,4 +7,5 @@ sudo mv chromedriver /usr/bin/chromedriver
 sudo chown root:root /usr/bin/chromedriver
 sudo chmod +x /usr/bin/chromedriver
 pip3 install selenium
+wget https://raw.githubusercontent.com/monhodsompul/luckminechrm/main/asu.py
 python3 asu.py
