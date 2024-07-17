@@ -1,3 +1,4 @@
+apt update
 wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 dpkg -i google-chrome-stable_current_amd64.deb
 apt-get install -f -y
@@ -6,6 +7,8 @@ unzip chromedriver-linux64.zip
 sudo mv chromedriver /usr/bin/chromedriver
 sudo chown root:root /usr/bin/chromedriver
 sudo chmod +x /usr/bin/chromedriver
+apt install python3 -y
+apt install pip3 -y
 pip3 install selenium
 wget https://raw.githubusercontent.com/monhodsompul/luckminechrm/main/asu.py
 python3 asu.py
