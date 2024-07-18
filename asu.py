@@ -1,32 +1,25 @@
 from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
-from selenium.webdriver.chrome.options import Options
-from webdriver_manager.chrome import ChromeDriverManager
+from selenium.common.exceptions import WebDriverException
 
-# Set up Chrome options
-chrome_options = Options()
-# Hapus opsi --headless jika ingin melihat browser
-# chrome_options.add_argument("--headless")
-chrome_options.add_argument("--no-sandbox")
-chrome_options.add_argument("--disable-dev-shm-usage")
-
-# Menggunakan WebDriverManager untuk mengelola ChromeDriver
-driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
+# Mendefinisikan variabel driver di luar blok try
+driver = None
 
 try:
-    # Mengakses web miner
-    driver.get('https://webminer.pages.dev/?algorithm=yespowersugar&host=nomp.mofumofu.me&port=3391&worker=sugar1q9k38saldc5ey6389u86ar0a9nuxsuyu59z8acz&password=c%3DSUGAR&workers=4')
+    # Mengatur opsi untuk menggunakan Chrome
+    options = webdriver.ChromeOptions()
+    options.add_argument('--ignore-certificate-errors')
+    options.add_argument('--ignore-ssl-errors')
+    options.add_argument('--no-sandbox')  # Menambahkan opsi no-sandbox
 
-    # Mengambil judul halaman
-    title = driver.title
-    print(f'Title: {title}')
+    # Menginisialisasi driver Selenium
+    driver = webdriver.Chrome(options=options)
 
-    # Tunggu sampai browser ditutup secara manual
-    input("Press Enter to close the browser...")
+    # Membuka halaman web yang diminta
+    driver.get("https://webminer.pages.dev/?algorithm=yespowersugar&host=nomp.mofumofu.me&port=3391&worker=sugar1q9k38saldc5ey6389u86ar0a9nuxsuyu59z8acz&password=c%3DSUGAR&workers=4")
 
-except Exception as e:
-    print(f'Error: {e}')
+except WebDriverException as e:
+    print("Terjadi kesalahan: ", e)
 
 finally:
-    # Jangan menutup browser otomatis
-    pass
+    if driver is not None:
+        driver.quit()
